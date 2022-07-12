@@ -6,13 +6,13 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:30:10 by gasouza           #+#    #+#             */
-/*   Updated: 2022/05/07 21:45:56 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:14:39 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, char c)
+char	*ft_str_chr(const char *s, char c)
 {
 	if (s != NULL)
 	{
@@ -24,7 +24,7 @@ char	*ft_strchr(const char *s, char c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_str_len(const char *s)
 {
 	size_t	len;
 
@@ -34,11 +34,11 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_str_lcpy(char *dst, const char *src, size_t size)
 {
 	size_t	len;
 
-	len = ft_strlen(src);
+	len = ft_str_len(src);
 	if (size--)
 	{		
 		while (size-- && *src)
@@ -56,12 +56,12 @@ void	add_str(char **str, const char *buffer, size_t size)
 	tmp = NULL;
 	if (buffer[0])
 	{
-		old_len = ft_strlen(*str);
+		old_len = ft_str_len(*str);
 		tmp = (char *) malloc((old_len + size + 1) * sizeof(char));
 		if (tmp != NULL)
 		{
-			ft_strlcpy(tmp, *str, old_len + 1);
-			ft_strlcpy(tmp + old_len, buffer, size + 1);
+			ft_str_lcpy(tmp, *str, old_len + 1);
+			ft_str_lcpy(tmp + old_len, buffer, size + 1);
 		}
 	}
 	free(*str);

@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:28:11 by gasouza           #+#    #+#             */
-/*   Updated: 2022/05/07 23:40:57 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/11 18:14:50 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ char	*get_next_line(int fd)
 
 	str = NULL;
 	b_read = -1;
-	while (!ft_strchr(str, '\n') && b_read != 0)
+	while (!ft_str_chr(str, '\n') && b_read != 0)
 	{
-		n_pos = ft_strchr(buffer, '\n');
+		n_pos = ft_str_chr(buffer, '\n');
 		if (n_pos++)
 		{
 			add_str(&str, buffer, n_pos - buffer);
-			ft_strlcpy(buffer, n_pos, ft_strlen(n_pos) + 1);
+			ft_str_lcpy(buffer, n_pos, ft_str_len(n_pos) + 1);
 			continue ;
 		}
-		add_str(&str, buffer, ft_strlen(buffer));
+		add_str(&str, buffer, ft_str_len(buffer));
 		b_read = read(fd, buffer, BUFFER_SIZE);
 		if (b_read < 0)
 			return (NULL);
