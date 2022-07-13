@@ -6,13 +6,13 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:33:54 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/12 11:34:16 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/13 10:08:45 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	has_invalid_char(char *const *map)
+static int	has_invalid_char(char *const *map, int bonus)
 {
 	char	*str;
 
@@ -21,11 +21,20 @@ static int	has_invalid_char(char *const *map)
 		str = *map;
 		while (str && *str)
 		{
-			if (*str != WALL_CHAR && *str != EMPTY_CHAR && \
-				*str != COLLECT_CHAR && *str != EXIT_CHAR && \
-				*str != PLAYER_CHAR)
+			if (bonus && *str == MOSTER_CHAR)
+				str++;
+			else if (*str == WALL_CHAR)
+				str++;
+			else if (*str == EMPTY_CHAR)
+				str++;
+			else if (*str == COLLECT_CHAR)
+				str++;
+			else if (*str == EXIT_CHAR)
+				str++;
+			else if (*str == PLAYER_CHAR)
+				str++;
+			else
 				return (TRUE);
-			str++;
 		}
 		map++;
 	}
@@ -102,11 +111,11 @@ static int	has_wall_surrounded(char *const *map)
 	return (TRUE);
 }
 
-int	map_check(char *const *map)
+int	map_check(char *const *map, int bonus)
 {
 	if (map == NULL)
 		return (FALSE);
-	if (has_invalid_char(map))
+	if (has_invalid_char(map, bonus))
 		return (FALSE);
 	if (!is_rectangle(map))
 		return (FALSE);

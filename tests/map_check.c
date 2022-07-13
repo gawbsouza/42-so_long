@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 06:33:52 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/12 19:46:51 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/13 10:06:09 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	test_blanks(void)
 	char *fewlines[] = {"1111", "1111", NULL};
 	char *emptyline[] = {"1111", "1001", "", "1111", NULL};
 	
-	result("nulll pointer", map_check(NULL) == FALSE);
-	result("only spaces", map_check(onlyspace) == FALSE);
-	result("random spaces", map_check(randspace) == FALSE);
-	result("few lines", map_check(fewlines) == FALSE);
-	result("empty line", map_check(emptyline) == FALSE);
+	result("nulll pointer", map_check(NULL, FALSE) == FALSE);
+	result("only spaces", map_check(onlyspace, FALSE) == FALSE);
+	result("random spaces", map_check(randspace, FALSE) == FALSE);
+	result("few lines", map_check(fewlines, FALSE) == FALSE);
+	result("empty line", map_check(emptyline, FALSE) == FALSE);
 }
 
 void	test_components(void)
@@ -46,15 +46,18 @@ void	test_components(void)
 	char *invcompmiddle[] = {"111111", "1SEPC1", "111111", NULL};
 	char *invcomptop[] = {"114111", "10EPC1", "111111", NULL};
 	char *invcompbottom[] = {"111111", "10EPC1", "11W111", NULL};
+	char *withmoster[] = {"1111", "1E01", "1P01", "1MC1", "1111", NULL};
 	
-	result("map correct", map_check(mapok) == TRUE);
-	result("no exit", map_check(noexit) == FALSE);
-	result("no player", map_check(noplayer) == FALSE);
-	result("no collect", map_check(nocollect) == FALSE);
-	result("no components", map_check(nocomps) == FALSE);
-	result("invalid component middle", map_check(invcompmiddle) == FALSE);
-	result("invalid component top", map_check(invcomptop) == FALSE);
-	result("invalid component bottom", map_check(invcompbottom) == FALSE);
+	result("map correct", map_check(mapok, FALSE) == TRUE);
+	result("no exit", map_check(noexit, FALSE) == FALSE);
+	result("no player", map_check(noplayer, FALSE) == FALSE);
+	result("no collect", map_check(nocollect, FALSE) == FALSE);
+	result("no components", map_check(nocomps, FALSE) == FALSE);
+	result("invalid component middle", map_check(invcompmiddle, FALSE) == FALSE);
+	result("invalid component top", map_check(invcomptop, FALSE) == FALSE);
+	result("invalid component bottom", map_check(invcompbottom, FALSE) == FALSE);
+	result("bonus disable and moster", map_check(withmoster, FALSE) == FALSE);
+	result("bonus enable and moster", map_check(withmoster, TRUE) == TRUE);
 }
 
 void	test_form(void)
@@ -66,12 +69,12 @@ void	test_form(void)
 	char *squared[] = {"1111", "10P1", "1EC1", "1111", NULL};
 	char *randlinesize[] = {"1111111", "1PCE01", "111", NULL};
 
-	result("invalid top wall", map_check(invtopwall) == FALSE);
-	result("invalid bottom wall", map_check(invbotwall) == FALSE);
-	result("invalid left wall", map_check(invleftwall) == FALSE);
-	result("invalid right wall", map_check(invrightwall) == FALSE);
-	result("squared format", map_check(squared) == FALSE);
-	result("random lines size", map_check(randlinesize) == FALSE);
+	result("invalid top wall", map_check(invtopwall, FALSE) == FALSE);
+	result("invalid bottom wall", map_check(invbotwall, FALSE) == FALSE);
+	result("invalid left wall", map_check(invleftwall, FALSE) == FALSE);
+	result("invalid right wall", map_check(invrightwall, FALSE) == FALSE);
+	result("squared format", map_check(squared, FALSE) == FALSE);
+	result("random lines size", map_check(randlinesize, FALSE) == FALSE);
 }
 	
 int main(void)
