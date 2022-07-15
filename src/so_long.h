@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/13 10:18:26 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/15 08:24:39 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,51 @@
 # define COLLECT_CHAR 'C'
 # define EXIT_CHAR 'E'
 # define PLAYER_CHAR 'P'
-# define MOSTER_CHAR 'M'
+# define MONSTER_CHAR 'M'
+
+typedef enum e_type
+{
+	WALL,
+	EMPTY,
+	COLLECT,
+	EXIT,
+	PLAYER,
+	MONSTER
+}	t_type;
+
+typedef struct s_img
+{
+	void	*content;
+	int		width;
+	int		height;
+}	t_img;
+
+typedef struct s_imgset
+{
+	t_img				*img;
+	size_t				frames;
+	size_t				frame;
+	struct s_imgset		*next;
+}	t_imgset;
+
+typedef struct s_obj
+{
+	t_type		type;
+	t_imgset	*imgs;
+}	t_obj;
+
+typedef struct s_map
+{
+	t_obj	**objs;
+	size_t	lines;
+	size_t	cols;
+}	t_map;
 
 char	**map_load_file(const char *file);
 int		map_check(char *const *map, int bonus);
+t_map	*map_create(char *const *map, int bonus);
 size_t	array_size(char *const *array);
+size_t	array_objs_size(t_obj **array);
 void	free_array(char **array);
 
 #endif

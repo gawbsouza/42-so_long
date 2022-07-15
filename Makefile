@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/12 20:53:26 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/13 23:04:50 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ CFLAGS	= -g -Wall -Werror -Wextra
 LIBS	= ft gnl 
 LIBS_D	= lib
 LIBS_A	= $(addsuffix .a, $(addprefix $(LIBS_D)/,$(LIBS)))
-SRCS	= utils.c map_check.c map_load_file.c
+SRCS	= utils.c map_check.c map_load_file.c map_create.c
 SRCS_D	= src
 OBJS	= $(subst .c,.o,$(addprefix $(SRCS_D)/,$(SRCS)))
 RM		= rm -rf
-TESTS	= map_check.c map_load_file.c
+TESTS	= map_check.c map_load_file.c map_create.c
 TESTS_D	= tests
 TESTS_F = $(TESTS:.c=_test)
 TFLAGS	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
