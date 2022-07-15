@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:33:54 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/13 10:08:45 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:54:38 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	has_invalid_char(char *const *map, int bonus)
 		str = *map;
 		while (str && *str)
 		{
-			if (bonus && *str == MOSTER_CHAR)
+			if (bonus && *str == MONSTER_CHAR)
 				str++;
 			else if (*str == WALL_CHAR)
 				str++;
@@ -77,11 +77,9 @@ static int	has_minimum_components(char *const *map)
 			exit++;
 		if (ft_strrchr(*map, PLAYER_CHAR))
 			player++;
-		if (collect > 0 && exit > 0 && player > 0)
-			return (TRUE);
 		map++;
 	}
-	return (FALSE);
+	return (collect > 0 && exit > 0 && player == 1);
 }
 
 static int	has_wall_surrounded(char *const *map)

@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 06:33:52 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/13 10:06:09 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:53:52 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,22 @@ void	test_components(void)
 	char *invcompmiddle[] = {"111111", "1SEPC1", "111111", NULL};
 	char *invcomptop[] = {"114111", "10EPC1", "111111", NULL};
 	char *invcompbottom[] = {"111111", "10EPC1", "11W111", NULL};
-	char *withmoster[] = {"1111", "1E01", "1P01", "1MC1", "1111", NULL};
+	char *withmonster[] = {"1111", "1E01", "1P01", "1MC1", "1111", NULL};
+	char *multipleplayer[] = {"1111","1PP1","1CE1", "10P1", "1111", NULL};
+	char *multipleexit[] = {"1111","1EE1","1CE1", "10P1", "1111", NULL};
 	
-	result("map correct", map_check(mapok, FALSE) == TRUE);
+	result("valid map", map_check(mapok, FALSE) == TRUE);
 	result("no exit", map_check(noexit, FALSE) == FALSE);
 	result("no player", map_check(noplayer, FALSE) == FALSE);
 	result("no collect", map_check(nocollect, FALSE) == FALSE);
 	result("no components", map_check(nocomps, FALSE) == FALSE);
+	result("multiples player", map_check(multipleplayer, FALSE) == FALSE);
+	result("multiples exit", map_check(multipleexit, FALSE) == TRUE);
 	result("invalid component middle", map_check(invcompmiddle, FALSE) == FALSE);
 	result("invalid component top", map_check(invcomptop, FALSE) == FALSE);
 	result("invalid component bottom", map_check(invcompbottom, FALSE) == FALSE);
-	result("bonus disable and moster", map_check(withmoster, FALSE) == FALSE);
-	result("bonus enable and moster", map_check(withmoster, TRUE) == TRUE);
+	result("bonus disable and monster", map_check(withmonster, FALSE) == FALSE);
+	result("bonus enable and monster", map_check(withmonster, TRUE) == TRUE);
 }
 
 void	test_form(void)
