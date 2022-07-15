@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 06:33:52 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/14 09:53:52 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:37:57 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,18 @@ void	test_form(void)
 	char *invbotwall[] = {"111111", "1PCE01", "110111", NULL};
 	char *invleftwall[] = {"111111", "0PCE01", "111111", NULL};
 	char *invrightwall[] = {"111111", "1PCE00", "111111", NULL};
-	char *squared[] = {"1111", "10P1", "1EC1", "1111", NULL};
+	char *oksize4x4[] = {"1111", "10P1", "1EC1", "1111", NULL};
+	char *oksize5x3[] = {"11111", "1PCE1", "11111", NULL};
+	char *oksize3x5[] = {"111", "1P1", "1C1", "1E1", "111", NULL};
 	char *randlinesize[] = {"1111111", "1PCE01", "111", NULL};
 
 	result("invalid top wall", map_check(invtopwall, FALSE) == FALSE);
 	result("invalid bottom wall", map_check(invbotwall, FALSE) == FALSE);
 	result("invalid left wall", map_check(invleftwall, FALSE) == FALSE);
 	result("invalid right wall", map_check(invrightwall, FALSE) == FALSE);
-	result("squared format", map_check(squared, FALSE) == FALSE);
+	result("ok size 4x4", map_check(oksize4x4, FALSE) == TRUE);
+	result("ok size 5x3", map_check(oksize5x3, FALSE) == TRUE);
+	result("ok size 3x5", map_check(oksize3x5, FALSE) == TRUE);
 	result("random lines size", map_check(randlinesize, FALSE) == FALSE);
 }
 	

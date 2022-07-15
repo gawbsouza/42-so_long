@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:33:54 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/14 09:54:38 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:30:21 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	has_invalid_char(char *const *map, int bonus)
 	return (FALSE);
 }
 
-static int	is_rectangle(char *const *map)
+static int	has_minimum_size(char *const *map)
 {
 	size_t	columns;
 	size_t	lines;
@@ -57,7 +57,7 @@ static int	is_rectangle(char *const *map)
 		lines++;
 		map++;
 	}
-	return (columns + lines != 0 && lines != columns);
+	return (columns + lines >= 8);
 }
 
 static int	has_minimum_components(char *const *map)
@@ -115,7 +115,7 @@ int	map_check(char *const *map, int bonus)
 		return (FALSE);
 	if (has_invalid_char(map, bonus))
 		return (FALSE);
-	if (!is_rectangle(map))
+	if (!has_minimum_size(map))
 		return (FALSE);
 	if (!has_wall_surrounded(map))
 		return (FALSE);
