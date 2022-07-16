@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:33:54 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/15 08:27:59 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:37:27 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,29 @@ static void	create_objs(t_map *map_obj, char *const *map)
 	map_obj->objs = objs;
 }
 
+static void	count_collects(t_map *map)
+{
+	size_t	l;
+	size_t	c;
+
+	l = 0;
+	c = 0;
+	if (!map)
+		return ;
+	map->collects = 0;
+	while (l < map->lines)
+	{
+		c = 0;
+		while (c < map->cols)
+		{
+			if (map->objs[l][c].type == COLLECT)
+				map->collects++;
+			c++;
+		}
+		l++;
+	}
+}
+
 t_map	*map_create(char *const *map, int bonus)
 {
 	t_map	*map_obj;
@@ -79,6 +102,7 @@ t_map	*map_create(char *const *map, int bonus)
 			map_obj->lines = array_size(map);
 			map_obj->cols = ft_strlen(*map);
 			create_objs(map_obj, map);
+			count_collects(map_obj);
 		}
 	}
 	return (map_obj);

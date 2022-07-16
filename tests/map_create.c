@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 22:54:07 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/15 08:28:55 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:35:50 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	free_objs(size_t lines, t_obj **objs)
 
 void test_map(void)
 {
-	char *map[] = {"1111", "1MC1", "10P1", "1E01", "1111", NULL};
+	char *map[] = {"1111", "1MC1", "10P1", "1EC1", "1111", NULL};
 	t_map *gmap = map_create(map, TRUE);
 
 	result("map lines", gmap->lines == 5);
@@ -114,11 +114,11 @@ void test_map(void)
 	result("map obj player positon", gmap->objs[2][2].type == PLAYER);
 	result("map obj exit positon", gmap->objs[3][1].type == EXIT);
 	result("map count obj wall", count_obj_type(gmap, WALL) == 14);
-	result("map count obj empty", count_obj_type(gmap, EMPTY) == 2);
+	result("map count obj empty", count_obj_type(gmap, EMPTY) == 1);
 	result("map count obj monster", count_obj_type(gmap, MONSTER) == 1);
 	result("map count obj exit", count_obj_type(gmap, EXIT) == 1);
 	result("map count obj player", count_obj_type(gmap, PLAYER) == 1);
-	result("map count obj collect", count_obj_type(gmap, COLLECT) == 1);
+	result("map count obj collect", gmap->collects == 2);
 	free_objs(gmap->lines, gmap->objs);
 	free(gmap);
 }
