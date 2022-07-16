@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/15 08:24:39 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/16 13:42:47 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ typedef struct s_img
 
 typedef struct s_imgset
 {
-	t_img				*img;
-	size_t				frames;
-	size_t				frame;
-	struct s_imgset		*next;
+	t_img	*img;
+	t_list	*list;
 }	t_imgset;
 
 typedef struct s_obj
@@ -68,11 +66,15 @@ typedef struct s_map
 	size_t	cols;
 }	t_map;
 
-char	**map_load_file(const char *file);
-int		map_check(char *const *map, int bonus);
-t_map	*map_create(char *const *map, int bonus);
-size_t	array_size(char *const *array);
-size_t	array_objs_size(t_obj **array);
-void	free_array(char **array);
+char		**map_load_file(const char *file);
+int			map_check(char *const *map, int bonus);
+t_map		*map_create(char *const *map, int bonus);
+size_t		array_size(char *const *array);
+size_t		array_objs_size(t_obj **array);
+void		free_array(char **array);
+t_imgset	*imgset_create(t_img *img);
+void		imgset_add_img(t_imgset **imgset, t_img *img);
+void		imgset_spin(t_imgset **imgset);
+void		imgset_destroy(t_imgset **imgset);
 
 #endif
