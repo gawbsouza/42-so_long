@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 14:21:13 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/18 17:15:59 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 char		**map_load_file(const char *file);
 int			map_check(char *const *map, int bonus);
 t_map		*map_create(char *const *map, int bonus);
+void		map_destroy(t_map **map);
 size_t		array_size(char *const *array);
 size_t		array_objs_size(t_obj **array);
 void		free_array(char **array);

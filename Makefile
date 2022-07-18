@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/16 18:57:22 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/18 17:22:54 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ LIBS_A	= $(addsuffix .a, $(addprefix $(LIBS_D)/,$(LIBS)))
 SRCS	= map_check.c		\
 		  map_load_file.c	\
 		  map_create.c		\
+		  map_destroy.c		\
 		  imgset_create.c	\
 		  imgset_add_img.c	\
 		  imgset_spin.c		\
