@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 22:54:07 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 14:35:50 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/18 17:16:48 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,6 @@ size_t	count_obj_type(const t_map *map, t_type type)
 	return (count);
 }
 
-void	map_destroy(t_map *map)
-{
-	size_t	l = 0;
-
-	if (map)
-	{
-		l = map->lines;
-		while (l--)
-			free(map->objs[l]);
-		free(map->objs);
-	}
-}
 void	free_objs(size_t lines, t_obj **objs)
 {
 	while (objs && lines--)
