@@ -40,5 +40,6 @@ t_imgset	*imgset_create(t_img *img);
 void		imgset_add_img(t_imgset **imgset, t_img *img);
 void		imgset_spin(t_imgset **imgset);
 void		imgset_destroy(t_imgset **imgset);
+t_pos		*player_get_pos(t_map *map);
 
 #endif

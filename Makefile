@@ -26,7 +26,8 @@ SRCS	= map_check.c		\
 		  imgset_destroy.c	\
 		  array_size.c		\
 		  array_objs_size.c	\
-		  free_array.c
+		  free_array.c		\
+		  player_get_pos.c
 SRCS_D	= src
 OBJS	= $(subst .c,.o,$(addprefix $(SRCS_D)/,$(SRCS)))
 RM		= rm -rf

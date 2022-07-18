@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 13:52:21 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 17:56:39 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/18 17:45:34 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef enum e_type
 	PLAYER,
 	MONSTER
 }	t_type;
+
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_img
 {
