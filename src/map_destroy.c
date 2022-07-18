@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 17:14:49 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/18 17:23:14 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/18 17:37:44 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	map_destroy(t_map **map)
 {
-	size_t	l = 0;
+	size_t	l;
 
 	if (!map || !*map)
 		return ;
