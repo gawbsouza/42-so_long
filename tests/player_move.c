@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:37:11 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/19 16:16:51 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/19 18:26:08 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,28 @@ int map_cmp(const t_map *m1, const t_map *m2)
 	return (TRUE);
 }
 
+void	test_move_dead_end()
+{
+	t_stat	*stdead = new_stat(0, 0, 1, 0);
+	t_stat	*stend = new_stat(0, 0, 0, 1);
+	t_stat	*stdeadend = new_stat(0, 0, 1, 1);
+	char *mapstr[] = {"11111", "1PCE1", "11111", NULL};
+	t_map *map = map_create(mapstr, FALSE); 
+	t_map *mapcmp = map_create(mapstr, FALSE); 
+
+	player_move(TO_LEFT, map, stdead);
+	result("status dead", map_cmp(map, mapcmp));
+	player_move(TO_LEFT, map, stend);
+	result("status end", map_cmp(map, mapcmp));
+	player_move(TO_LEFT, map, stdeadend);
+	result("status dead and end", map_cmp(map, mapcmp));
+
+	map_destroy(&map);
+	map_destroy(&mapcmp);
+	free(stdead);
+	free(stend);
+	free(stdeadend);
+}
 void	test_move_to_wall()
 {
 	t_stat *st = new_stat(0, 0, 0, 0);
@@ -102,11 +124,137 @@ void	test_move_to_wall()
 	free(st);
 }
 
+void	test_move_to_empty()
+{
+	t_stat *st = new_stat(0, 0, 0, 0);
+	char *mapstr[] = {"11111", "100E1", "10PC1", "11111", NULL};
+	t_map *map = map_create(mapstr, FALSE);
+	t_map *mapcmp = map_create(mapstr, FALSE);
+
+	// 11111, 100E1, 1P0C1, 11111
+	mapcmp->objs[2][1].type = PLAYER;
+	mapcmp->objs[2][2].type = EMPTY;
+	player_move(TO_LEFT, map, st);
+	result("left: to empty : status", stat_cmp(st, 0, 1, 0, 0));
+	result("left: to empty : objs", map_cmp(map, mapcmp));
+	
+	// 11111, 1P0E1, 100C1, 11111
+	mapcmp->objs[1][1].type = PLAYER;
+	mapcmp->objs[2][1].type = EMPTY;
+	player_move(TO_UP, map, st);
+	result("up: to empty : status", stat_cmp(st, 0, 2, 0, 0));
+	result("up: to empty : objs", map_cmp(map, mapcmp));
+
+	// 11111, 10PE1, 100C1, 11111
+	mapcmp->objs[1][2].type = PLAYER;
+	mapcmp->objs[1][1].type = EMPTY;
+	player_move(TO_RIGHT, map, st);
+	result("right: to empty : status", stat_cmp(st, 0, 3, 0, 0));
+	result("right: to empty : objs", map_cmp(map, mapcmp));
+	
+	// 11111, 100E1, 10PC1, 11111
+	mapcmp->objs[2][2].type = PLAYER;
+	mapcmp->objs[1][2].type = EMPTY;
+	player_move(TO_DOWN, map, st);
+	result("down: to empty : status", stat_cmp(st, 0, 4, 0, 0));
+	result("down: to empty : objs", map_cmp(map, mapcmp));
+
+	map_destroy(&map);
+	map_destroy(&mapcmp);
+	free(st);
+}
+
+void	test_move_to_collect()
+{
+	t_stat *st = new_stat(0, 0, 0, 0);
+	char *mapstr[] = {"11111", "1CCE1", "1CPC1", "11111", NULL};
+	t_map *map = map_create(mapstr, FALSE);
+	t_map *mapcmp = map_create(mapstr, FALSE);
+
+	// 11111, 1CCE1, 1P0C1, 11111
+	mapcmp->objs[2][1].type = PLAYER;
+	mapcmp->objs[2][2].type = EMPTY;
+	player_move(TO_LEFT, map, st);
+	result("left: to collect : status", stat_cmp(st, 1, 1, 0, 0));
+	result("left: to collect : objs", map_cmp(map, mapcmp));
+	
+	// 11111, 1PCE1, 100C1, 11111
+	mapcmp->objs[1][1].type = PLAYER;
+	mapcmp->objs[2][1].type = EMPTY;
+	player_move(TO_UP, map, st);
+	result("up: to collect : status", stat_cmp(st, 2, 2, 0, 0));
+	result("up: to collect : objs", map_cmp(map, mapcmp));
+
+	// 11111, 10PE1, 100C1, 11111
+	mapcmp->objs[1][2].type = PLAYER;
+	mapcmp->objs[1][1].type = EMPTY;
+	player_move(TO_RIGHT, map, st);
+	result("right: to collect : status", stat_cmp(st, 3, 3, 0, 0));
+	result("right: to collect : objs", map_cmp(map, mapcmp));
+	
+	// 11111, 100E1, 10PC1, 11111
+	map->objs[2][2].type = COLLECT;
+	mapcmp->objs[2][2].type = PLAYER;
+	mapcmp->objs[1][2].type = EMPTY;
+	player_move(TO_DOWN, map, st);
+	result("down: to collect : status", stat_cmp(st, 4, 4, 0, 0));
+	result("down: to collect : objs", map_cmp(map, mapcmp));
+
+	map_destroy(&map);
+	map_destroy(&mapcmp);
+	free(st);
+}
+
+void	test_move_to_exit()
+{
+	t_stat *st = new_stat(0, 0, 0, 0);
+	char *mapstr[] = {"11111", "1EPC1", "11111", NULL};
+	t_map *map = map_create(mapstr, FALSE);
+	t_map *mapcmp = map_create(mapstr, FALSE);
+
+	player_move(TO_LEFT, map, st);
+	result("exit: without collect : status", stat_cmp(st, 0, 0, 0, 0));
+	result("exit: without collect : objs", map_cmp(map, mapcmp));
+
+	mapcmp->objs[1][2].type = EMPTY;
+	st->collects = 1;
+	player_move(TO_LEFT, map, st);
+	result("exit: with collect : status", stat_cmp(st, 1, 1, 0, 1));
+	result("exit: with collect : objs", map_cmp(map, mapcmp));
+
+	map_destroy(&map);
+	map_destroy(&mapcmp);
+	free(st);
+}
+
+void	test_move_to_monster()
+{
+	t_stat *st = new_stat(0, 0, 0, 0);
+	char *mapstr[] = {"111111", "1MPEC1", "111111", NULL};
+	t_map *map = map_create(mapstr, TRUE);
+	t_map *mapcmp = map_create(mapstr, TRUE);
+
+	player_move(TO_LEFT, map, st);
+	mapcmp->objs[1][2].type = EMPTY;
+	result("monster: status", stat_cmp(st, 0, 1, 1, 1));
+	result("monster: objs", map_cmp(map, mapcmp));
+
+
+	map_destroy(&map);
+	map_destroy(&mapcmp);
+	free(st);
+}
+
 int main(void)
 {
 	printf("\n%s\n", __FILE_NAME__);
 
+	test_move_dead_end();
 	test_move_to_wall();
+	test_move_to_empty();
+	test_move_to_collect();
+	test_move_to_exit();
+	test_move_to_monster();
 
 	printf("\n");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:52:03 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/19 16:19:19 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/19 18:27:12 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,24 @@ static void	change_position(t_obj *old, t_obj *new, t_map *map, t_stat *st)
 		return ;
 	if (new->type == WALL)
 		return ;
+	if (new->type == EXIT && st->collects < map->collects)
+		return ;
 	if (new->type == COLLECT)
-	{
-		new->type = PLAYER;
 		st->collects++;
-	}
-	else if (new->type == MONSTER)
+	if (new->type == MONSTER)
 	{
 		st->dead = 1;
 		st->end = 1;
 	}
-	else if (new->type == EXIT && map->collects <= st->collects)
+	if (new->type == EXIT)
 	{
 		st->dead = 0;
 		st->end = 1;
 	}
-	old->type = EMPTY;
+	if (new->type == COLLECT || new->type == EMPTY)
+		new->type = PLAYER;
 	st->moves++;
+	old->type = EMPTY;
 }
 
 void	player_move(char dir, t_map *map, t_stat *st)
@@ -58,7 +59,7 @@ void	player_move(char dir, t_map *map, t_stat *st)
 	t_obj	*player_obj;
 	t_obj	*new_obj;
 
-	if (!map || !st)
+	if (!map || !st || st->end || st->dead)
 		return ;
 	player_pos = player_get_pos(map);
 	if (!player_pos || !is_valid_moviment(dir, player_pos, map))
@@ -69,9 +70,9 @@ void	player_move(char dir, t_map *map, t_stat *st)
 	if (dir == TO_RIGHT)
 		new_obj = &map->objs[player_pos->y][player_pos->x + 1];
 	if (dir == TO_UP)
-		new_obj = &map->objs[player_pos->y + 1][player_pos->x];
-	if (dir == TO_DOWN)
 		new_obj = &map->objs[player_pos->y - 1][player_pos->x];
-	free(player_pos);
+	if (dir == TO_DOWN)
+		new_obj = &map->objs[player_pos->y + 1][player_pos->x];
 	change_position(player_obj, new_obj, map, st);
+	free(player_pos);
 }
