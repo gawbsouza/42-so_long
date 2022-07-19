@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/18 17:15:59 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/19 09:38:25 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define EXIT_CHAR 'E'
 # define PLAYER_CHAR 'P'
 # define MONSTER_CHAR 'M'
+# define TO_LEFT 'l' 
+# define TO_RIGHT 'r'
+# define TO_UP 'u'
+# define TO_DOWN 'd'
 
 char		**map_load_file(const char *file);
 int			map_check(char *const *map, int bonus);
@@ -41,5 +45,6 @@ void		imgset_add_img(t_imgset **imgset, t_img *img);
 void		imgset_spin(t_imgset **imgset);
 void		imgset_destroy(t_imgset **imgset);
 t_pos		*player_get_pos(t_map *map);
+void		player_move(char dir, t_map *map, t_stat *st);
 
 #endif

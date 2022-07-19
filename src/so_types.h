@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 13:52:21 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/18 17:45:34 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/19 09:28:47 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef enum e_type
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 }	t_pos;
 
 typedef struct s_img
@@ -47,6 +47,14 @@ typedef struct s_obj
 	t_type		type;
 	t_imgset	*imgs;
 }	t_obj;
+
+typedef struct s_stat
+{
+	int	collects;
+	int	moves;
+	int	dead;
+	int	end;
+}	t_stat;
 
 typedef struct s_map
 {
