@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/19 09:26:33 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/20 16:20:18 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME	= so_long
 CC		= cc
 CFLAGS	= -g -Wall -Werror -Wextra
 LIBS	= ft gnl 
+MLXFLAGS= -lmlx -lX11 -lXext
 LIBS_D	= lib
 LIBS_A	= $(addsuffix .a, $(addprefix $(LIBS_D)/,$(LIBS)))
 SRCS	= map_check.c		\
@@ -28,7 +29,8 @@ SRCS	= map_check.c		\
 		  array_objs_size.c	\
 		  free_array.c		\
 		  player_get_pos.c	\
-		  player_move.c
+		  player_move.c		\
+		  assets_create.c
 SRCS_D	= src
 OBJS	= $(subst .c,.o,$(addprefix $(SRCS_D)/,$(SRCS)))
 RM		= rm -rf
@@ -48,7 +50,7 @@ $(NAME): $(LIBS_A) $(OBJS)
 
 # Make objects
 %.o: %.c 
-	$(CC) $(CFLAGS)	$(addprefix -I$(LIBS_D)/,$(LIBS)) -c $< -o $@
+	$(CC) $(CFLAGS)	$(addprefix -I$(LIBS_D)/,$(LIBS)) $(MLXFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
@@ -68,7 +70,7 @@ tests: $(TESTS_F)
 # Make tests
 %_test: $(TESTS_D)/%.o $(LIBS_A) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $< $(addprefix -L$(LIBS_D)/,$(LIBS)) \
-		$(addprefix -l,$(LIBS)) -o $(TESTS_D)/$@
+		$(addprefix -l,$(LIBS)) $(MLXFLAGS) -o $(TESTS_D)/$@
 ifeq (run, $(filter run, $(MAKECMDGOALS)))
 	clear
 ifeq (valgrind, $(filter valgrind, $(MAKECMDGOALS)))
