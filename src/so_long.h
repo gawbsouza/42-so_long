@@ -6,13 +6,14 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/19 09:38:25 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/20 17:21:48 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include "so_types.h"
@@ -46,5 +47,7 @@ void		imgset_spin(t_imgset **imgset);
 void		imgset_destroy(t_imgset **imgset);
 t_pos		*player_get_pos(t_map *map);
 void		player_move(char dir, t_map *map, t_stat *st);
+t_assets	*assets_create(t_gui *gui, int base_w, int base_h);
+void		assets_destroy(t_gui *gui, t_assets **assets);
 
 #endif

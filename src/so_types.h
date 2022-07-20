@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 13:52:21 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/19 09:28:47 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/20 16:48:05 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,23 @@ typedef struct s_map
 	size_t	cols;
 	int		collects;
 }	t_map;
+
+typedef struct s_gui
+{
+	void	*mlx;
+	void	*win;
+}	t_gui;
+
+typedef struct s_assets
+{
+	int			base_w;
+	int			base_h;
+	t_imgset	*player;
+	t_imgset	*monster;
+	t_imgset	*empty;
+	t_imgset	*exit;
+	t_imgset	*collect;
+	t_imgset	*wall;
+}	t_assets;
 
 #endif

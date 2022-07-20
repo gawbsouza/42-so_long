@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/20 16:20:18 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/20 17:12:57 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS	= map_check.c		\
 		  free_array.c		\
 		  player_get_pos.c	\
 		  player_move.c		\
-		  assets_create.c
+		  assets_create.c	\
+		  assets_destroy.c
 SRCS_D	= src
 OBJS	= $(subst .c,.o,$(addprefix $(SRCS_D)/,$(SRCS)))
 RM		= rm -rf
