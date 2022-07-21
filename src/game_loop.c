@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 11:14:23 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 13:30:27 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 17:03:00 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ static int	loop_hook(t_game *game)
 	return (0);
 }
 
-static void	show(t_game *game)
+static	int	expose_hook(t_game *game)
 {
-	if (!game)
-		return ;
-	window_draw(game->gui, game->assets, game->map);
-	ft_printf("\r\033[1;35m MOVES:\033[;0m %d   ", game->stat->moves);
+	if (game)
+	{
+		window_draw(game->gui, game->assets, game->map);
+		ft_printf("\r\033[1;35m MOVES:\033[;0m %d   ", game->stat->moves);
+	}
+	return (0);
 }
 
 static int	key_hook(int key, t_game *game)
@@ -56,7 +58,7 @@ static int	key_hook(int key, t_game *game)
 			player_move(TO_RIGHT, game->map, game->stat);
 		if (key == XK_a)
 			player_move(TO_LEFT, game->map, game->stat);
-		show(game);
+		expose_hook(game);
 	}
 	return (0);
 }
@@ -65,8 +67,8 @@ int	game_loop(t_game *game)
 {
 	if (!game)
 		return (1);
-	show(game);
 	mlx_loop_hook(game->gui->mlx, loop_hook, game);
+	mlx_expose_hook(game->gui->win, expose_hook, game);
 	mlx_key_hook(game->gui->win, key_hook, game);
 	mlx_hook(game->gui->win, 17, 0, force_exit, game);
 	mlx_loop(game->gui->mlx);
