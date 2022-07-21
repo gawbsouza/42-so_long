@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 03:43:54 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:20:23 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define TO_DOWN 'd'
 
 char		**map_load_file(const char *file);
+int			map_valid_file_ext(const char *file);
 int			map_check(char *const *map, int bonus);
 t_map		*map_create(char *const *map, int bonus);
 void		map_destroy(t_map **map);

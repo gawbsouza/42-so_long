@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/21 02:06:09 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/21 12:27:44 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS	= map_check.c		map_load_file.c		map_create.c		\
 		  array_objs_size.c	free_array.c		player_get_pos.c	\
 		  player_move.c		assets_create.c		assets_destroy.c	\
 		  gui_create.c		gui_destroy.c		window_draw.c		\
-		  game_create.c		stat_create.c		game_destroy.c
+		  game_create.c		stat_create.c		game_destroy.c		\
+		  so_long.c			game_init.c			game_loop.c			\
+		  map_valid_file_ext.c
 SRCS_D	= src
 OBJS	= $(subst .c,.o,$(addprefix $(SRCS_D)/,$(SRCS)))
 RM		= rm -rf
@@ -35,7 +37,7 @@ all: $(NAME)
 
 $(NAME): $(LIBS_A) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(addprefix -L$(LIBS_D)/,$(LIBS)) \
-		$(addprefix -l,$(LIBS)) -o $@
+		$(addprefix -l,$(LIBS)) $(MLXFLAGS) -o $@
 
 # Make libraries
 %.a: 
