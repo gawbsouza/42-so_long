@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 20:26:56 by gasouza           #+#    #+#              #
-#    Updated: 2022/05/25 14:49:20 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/21 19:01:53 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS	=	ft_strlen.c			\
 			ft_printf.c
 INCS	=	ft_printf.h
 OBJS	=	$(SRCS:.c=.o)
-CC		=	gcc
+CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -rf
 AR		=	ar -rc
