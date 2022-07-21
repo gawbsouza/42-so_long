@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 01:36:52 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 02:02:13 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ t_gui		*gui_create(int width, int height, char *title);
 void		gui_destroy(t_gui **gui);
 int			window_draw(t_gui *gui, t_assets *assets, t_map *map);
 t_game		*game_create(char *const *map, int base_w, int base_h, int bonus);
+void		game_destroy(t_game **game);
 
 #endif
