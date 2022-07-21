@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_create.c                                       :+:      :+:    :+:   */
+/*   gui_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 18:53:19 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 21:21:49 by gasouza          ###   ########.fr       */
+/*   Created: 2022/07/20 21:03:10 by gasouza           #+#    #+#             */
+/*   Updated: 2022/07/20 21:09:56 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,21 @@ void	result(const char *test, int result)
 	printf("%s\n", test);
 }
 
-void gui_destroy(t_gui **gui)
+void	test_destroy(void)
 {
-	if (!gui || !*gui)
-		return ;
-	mlx_destroy_window((*gui)->mlx, (*gui)->win);
-	mlx_destroy_display((*gui)->mlx);
-	free((*gui)->mlx);
-	free(*gui);
-	*gui = NULL;
-}
-
-void	test_create()
-{
-
 	t_gui *gui;
-
 	gui = gui_create(300, 300, "gasouza");
-	result("invalid width", gui_create(0, 300, "gasouza") == NULL);
-	result("invalid height", gui_create(300, 0, "gasouza") == NULL);
-	result("invalid title", gui_create(300, 300, NULL) == NULL);
+
 	result("create", gui != NULL);
 	gui_destroy(&gui);
-	
+	result("destroy", gui == NULL);
 }
 
 int main(void)
 {
 	printf("\n%s\n", __FILE_NAME__);
 
-	test_create();
+	test_destroy();
 
 	printf("\n");
 	return (0);
