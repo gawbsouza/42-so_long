@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 13:52:21 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 16:48:05 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 01:30:37 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,13 @@ typedef struct s_assets
 	t_imgset	*collect;
 	t_imgset	*wall;
 }	t_assets;
+
+typedef struct s_game
+{
+	t_gui		*gui;
+	t_stat		*stat;
+	t_map		*map;
+	t_assets	*assets;
+}	t_game;
 
 #endif

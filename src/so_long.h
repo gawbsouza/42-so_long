@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 01:19:51 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 01:36:52 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		map_destroy(t_map **map);
 size_t		array_size(char *const *array);
 size_t		array_objs_size(t_obj **array);
 void		free_array(char **array);
+t_stat		*stat_create(int moves, int collects, int dead, int end);
 t_imgset	*imgset_create(t_img *img);
 void		imgset_add_img(t_imgset **imgset, t_img *img);
 void		imgset_spin(t_imgset **imgset);
@@ -53,5 +54,6 @@ void		assets_destroy(t_gui *gui, t_assets **assets);
 t_gui		*gui_create(int width, int height, char *title);
 void		gui_destroy(t_gui **gui);
 int			window_draw(t_gui *gui, t_assets *assets, t_map *map);
+t_game		*game_create(char *const *map, int base_w, int base_h, int bonus);
 
 #endif
