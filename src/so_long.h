@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 21:09:40 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/20 22:22:36 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_assets	*assets_create(t_gui *gui, int base_w, int base_h);
 void		assets_destroy(t_gui *gui, t_assets **assets);
 t_gui		*gui_create(int width, int height, char *title);
 void		gui_destroy(t_gui **gui);
+int			window_draw(t_gui *gui, t_assets *assets, t_map *map);
 
 #endif
