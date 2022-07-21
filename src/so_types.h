@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 13:52:21 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 01:30:37 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:53:21 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,9 @@ typedef struct s_pos
 	size_t	y;
 }	t_pos;
 
-typedef struct s_img
-{
-	void	*content;
-	int		width;
-	int		height;
-}	t_img;
-
 typedef struct s_imgset
 {
-	t_img	*img;
+	char	*img;
 	t_list	*list;
 }	t_imgset;
 

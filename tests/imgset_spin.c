@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 08:56:17 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 18:46:38 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:57:36 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,13 @@ void free_imgset(t_imgset **imgset)
 	free(*imgset);
 }
 
-t_img *new_img(char *content, int w, int h)
-{
-	t_img		*img;
-
-	img = (t_img *) malloc(sizeof(t_img));
-	if (img)
-	{
-		img->content = content;
-		img->width = w;
-		img->height = h;
-	}
-	return (img);
-}
-
 void	test_spin(void)
 {
-	t_img		*img1, *img2;
+	char		*img1, *img2;
 	t_imgset	*imgset;
 
-	img1 = new_img("IMG 1", 32, 32);
-	img2 = new_img("IMG 2", 32, 32);
+	img1 = ft_strdup("img 1");
+	img2 = ft_strdup("img 2");
 	imgset = imgset_create(img1);
 
 	imgset_spin(&imgset);

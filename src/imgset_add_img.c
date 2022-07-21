@@ -6,13 +6,13 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:38:10 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 18:38:34 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:46:07 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	imgset_add_img(t_imgset **imgset, t_img *img)
+void	imgset_add_img(t_imgset **imgset, char *img)
 {
 	t_list	*new;
 

@@ -6,14 +6,14 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:27:13 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 16:43:36 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 04:00:06 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/so_long.h"
 #include <stdio.h>
 
-void	result(const char *test, int result)
+static void	result(const char *test, int result)
 {
 	if (result == TRUE)
 		printf("- %s: ", "\033[0;32mPASS\033[;0m");
@@ -22,38 +22,8 @@ void	result(const char *test, int result)
 	printf("%s\n", test);
 }
 
-void assets_destroy(t_assets **assets, t_gui *gui)
-{
-	if (!assets || !*assets)
-		return ;
-	mlx_destroy_image(gui->mlx, (*assets)->empty->img);
-	mlx_destroy_image(gui->mlx, (*assets)->wall->img);
-	mlx_destroy_image(gui->mlx, (*assets)->player->img);
-	mlx_destroy_image(gui->mlx, (*assets)->collect->img);
-	mlx_destroy_image(gui->mlx, (*assets)->exit->img);
-	mlx_destroy_image(gui->mlx, (*assets)->monster->img);
-	imgset_destroy(&(*assets)->empty);
-	imgset_destroy(&(*assets)->wall);
-	imgset_destroy(&(*assets)->player);
-	imgset_destroy(&(*assets)->collect);
-	imgset_destroy(&(*assets)->monster);
-	imgset_destroy(&(*assets)->exit);
-	free(*assets);
-	*assets = NULL;
-}
 
-void gui_destroy(t_gui **gui)
-{
-	if (!gui || !*gui)
-		return ;
-	mlx_destroy_window((*gui)->mlx, (*gui)->win);
-	mlx_destroy_display((*gui)->mlx);
-	free((*gui)->mlx);
-	free(*gui);
-	*gui = NULL;
-}
-
-void	test_assets(void)
+static void	test_assets(void)
 {
 	t_gui *gui;
 	t_assets *assets;
@@ -73,7 +43,7 @@ void	test_assets(void)
 	result("valid monster asset", assets->monster != NULL);
 	result("valid colletc asset", assets->collect != NULL);
 	result("valid exit asset", assets->exit != NULL);
-	assets_destroy(&assets, gui);
+	assets_destroy(gui, &assets);
 	gui_destroy(&gui);
 }
 

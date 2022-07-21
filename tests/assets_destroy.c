@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:15:26 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 17:22:15 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 04:00:43 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,6 @@ static void	result(const char *test, int result)
 	if (result == FALSE)
 		printf("- %s: ", "\033[0;31mFAIL\033[;0m");
 	printf("%s\n", test);
-}
-
-static void gui_destroy(t_gui **gui)
-{
-	if (!gui || !*gui)
-		return ;
-	mlx_destroy_window((*gui)->mlx, (*gui)->win);
-	mlx_destroy_display((*gui)->mlx);
-	free((*gui)->mlx);
-	free(*gui);
-	*gui = NULL;
 }
 
 static void	test_destroy(void)

@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/21 02:02:13 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:43:54 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ size_t		array_size(char *const *array);
 size_t		array_objs_size(t_obj **array);
 void		free_array(char **array);
 t_stat		*stat_create(int moves, int collects, int dead, int end);
-t_imgset	*imgset_create(t_img *img);
-void		imgset_add_img(t_imgset **imgset, t_img *img);
+t_imgset	*imgset_create(char *img);
+void		imgset_add_img(t_imgset **imgset, char *img);
 void		imgset_spin(t_imgset **imgset);
 void		imgset_destroy(t_imgset **imgset);
 t_pos		*player_get_pos(t_map *map);

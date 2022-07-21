@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 08:56:17 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/16 18:44:35 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:54:18 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,16 @@ void free_imgset(t_imgset **imgset)
 	free(*imgset);
 }
 
-t_img *new_img(char *content, int w, int h)
-{
-	t_img		*img;
-
-	img = (t_img *) malloc(sizeof(t_img));
-	if (img)
-	{
-		img->content = content;
-		img->width = w;
-		img->height = h;
-	}
-	return (img);
-}
-
 void	test_create(void)
 {
-	t_img		*img;
 	t_imgset	*imgset;
 
-	img = new_img("Conteudo IMG", 32, 42);
-	imgset = imgset_create(img);
+	imgset = imgset_create(ft_strdup("conteudo img"));
 	result("create: valid pointer", imgset != NULL);
 	result("create: image", imgset->img != NULL);
 	result("create: images list", imgset->list != NULL);
 	result("create: images list size", ft_lstsize(imgset->list) == 1);
-	result("create: image content", strcmp(imgset->img->content, img->content) == 0);
-	result("create: image width", imgset->img->width == img->width);
-	result("create: image height", imgset->img->height == img->height);
+	result("create: image content", strcmp(imgset->img, "conteudo img") == 0);
 	free_imgset(&imgset);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 08:38:08 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 16:47:25 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 03:49:09 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_assets	*new(int base_w, int base_h)
 static t_imgset	*load_asset(t_assets *a, t_gui *g, char *file)
 {
 	t_imgset	*imgset;
-	void		*img;
+	char		*img;
 
 	imgset = NULL;
 	if (a && g && file)
