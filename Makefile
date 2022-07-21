@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/21 14:34:49 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/21 15:13:50 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(FTPRINTF_A):
 
 # Make objs
 %.o: %.c 
-	$(CC) $(CFLAGS)	$(LIBS_L) $(MLX) -c $< $(LIBS_I) -o $@
+	$(CC) $(CFLAGS)	-c $< $(LIBS_I) -o $@
 
 clean:
 	$(RM) $(OBJS)
