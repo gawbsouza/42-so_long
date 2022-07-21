@@ -6,7 +6,7 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/21 15:24:36 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/21 17:08:57 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,6 @@ run: $(NAME)
 	./$(NAME) maps/default.ber
 
 valgrind: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) maps/01.ber
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) maps/default.ber
 
 .PHONY : all clean fclean re run valgrind 
