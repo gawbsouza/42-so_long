@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:33:54 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/15 12:30:21 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:39:57 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,24 @@ int	map_check(char *const *map, int bonus)
 	if (map == NULL)
 		return (FALSE);
 	if (has_invalid_char(map, bonus))
+	{
+		ft_printf("Invalid Map: invalid char found.\n");
 		return (FALSE);
+	}
 	if (!has_minimum_size(map))
+	{
+		ft_printf("Invalid Map: invalid size.\n");
 		return (FALSE);
+	}
 	if (!has_wall_surrounded(map))
+	{
+		ft_printf("Invalid Map: not surrounded by walls.\n");
 		return (FALSE);
+	}
 	if (!has_minimum_components(map))
+	{
+		ft_printf("Invalid Map: not enough components.\n");
 		return (FALSE);
+	}
 	return (TRUE);
 }

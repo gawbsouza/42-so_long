@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:58:56 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/12 19:44:53 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:39:24 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**map_load_file(const char *file)
 	fd = open(file, O_RDONLY);
 	if (fd <= -1)
 	{
-		perror(file);
+		ft_printf("Invalid Map: file not found or invalid.\n");
 		return (NULL);
 	}
 	buffer = fd_to_str(fd);
