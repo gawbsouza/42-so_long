@@ -6,7 +6,7 @@
 /*   By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:17:00 by gasouza           #+#    #+#             */
-/*   Updated: 2022/07/20 22:22:36 by gasouza          ###   ########.fr       */
+/*   Updated: 2022/07/21 01:19:51 by gasouza          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include "so_types.h"
 # include <stddef.h>
 # include <fcntl.h>

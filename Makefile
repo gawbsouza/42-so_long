@@ -6,14 +6,14 @@
 #    By: gasouza <gasouza@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 19:52:48 by gasouza           #+#    #+#              #
-#    Updated: 2022/07/20 22:12:27 by gasouza          ###   ########.fr        #
+#    Updated: 2022/07/21 00:51:20 by gasouza          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 CC		= cc
 CFLAGS	= -g -Wall -Werror -Wextra
-LIBS	= ft gnl 
+LIBS	= ft gnl ftprintf
 MLXFLAGS= -lmlx -lX11 -lXext
 LIBS_D	= lib
 LIBS_A	= $(addsuffix .a, $(addprefix $(LIBS_D)/,$(LIBS)))
